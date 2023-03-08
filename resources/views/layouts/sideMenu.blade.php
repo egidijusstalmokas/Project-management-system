@@ -56,6 +56,14 @@
             </p>
           </a>
         </li>
+        <li class="nav-item">
+          <a href="{{ route('users.create') }}" class="nav-link">
+          <i class="nav-icon fa-solid fa-users"></i>
+            <p>
+              Users
+            </p>
+          </a>
+        </li>
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,11 +22,11 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
+])->prefix('dashboard')->group(function () {
+    Route::get('/', function () {
         return view('welcome');
     })->name('dashboard');
     Route::middleware(['admin'])->group(function () {
-        
+        Route::resource('users', UserController::class)->names('users');
     });
 });
