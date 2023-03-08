@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Actions\Fortify\CreateNewUser;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\WelcomeEmail;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -35,8 +38,10 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user =  new CreateNewUser;
-        $user->create($request->all());
+        $newUser = new CreateNewUser;
+        $newUser->create($request->all());
+        $user = User::orderBy('created_at', 'desc')->first();
+        Mail::to($user->email)->send(new WelcomeEmail($user));
         return redirect()->back()->with('success', 'User created successfully');
     }
 
