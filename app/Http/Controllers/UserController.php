@@ -7,6 +7,8 @@ use App\Actions\Fortify\CreateNewUser;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\WelcomeEmail;
 use App\Models\User;
+use Auth;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -17,7 +19,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::select('id', 'name', 'lastname', 'email', 'role')->whereNotIn('id', [Auth::id()])->get();
+        return view('user.index', compact('users'));
     }
 
     /**
@@ -64,7 +67,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('user.edit', compact('user'));
     }
 
     /**
@@ -76,7 +80,18 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+            'lastname' => ['required', 'string', 'max:255'],
+            'role' => ['required', 'string', 'max:255'],
+        ])->validate();
+
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->lastname = $request->lastname;
+        $user->role = $request->role;
+        $user->save();
+        return redirect()->back()->with('success', 'User updated successfully');
     }
 
     /**
@@ -87,6 +102,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect()->route('users.index')->with('success', 'User was updated successfully');
     }
 }

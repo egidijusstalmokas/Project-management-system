@@ -1,0 +1,8 @@
+
+.user-edit-icon {
+    visibility: hidden;
+}
+
+.user-table-row:hover .user-edit-icon {
+    visibility: visible;
+}
