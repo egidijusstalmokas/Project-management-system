@@ -27,6 +27,6 @@ Route::middleware([
         return view('welcome');
     })->name('dashboard');
     Route::middleware(['admin'])->group(function () {
-        Route::resource('users', UserController::class)->names('users');
+        Route::resource('users', UserController::class, ['except' => ['show']])->names('users');
     });
 });
