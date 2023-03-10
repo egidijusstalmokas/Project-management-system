@@ -61,4 +61,14 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function fullName()
+    {
+        return $this->name . ' ' . $this->lastname;
+    }
+
+    public function hasRole($role)
+    {
+        return $this->role === $role;
+    }
 }
