@@ -56,8 +56,22 @@
             </p>
           </a>
         </li>
+        <li class="nav-header">
+            PERSONAL
+        </li>
         <li class="nav-item">
-          <a href="{{ route('users.index') }}" class="nav-link">
+          <a href="" class="nav-link">
+          <i class="nav-icon fa-solid fa-id-card"></i>
+            <p>
+              Profile
+            </p>
+          </a>
+        </li>
+        <li class="nav-header">
+            ADMIN
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('users.index') }}" class="nav-link {{ request()->routeIs('users.index', 'users.create', 'users.edit') ? 'active' : '' }}">
           <i class="nav-icon fa-solid fa-users"></i>
             <p>
               Users
@@ -70,3 +84,4 @@
   </div>
   <!-- /.sidebar -->
 </aside>
+
