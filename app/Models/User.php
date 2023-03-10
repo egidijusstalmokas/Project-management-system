@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Profile;
 
 class User extends Authenticatable
 {
@@ -70,5 +71,10 @@ class User extends Authenticatable
     public function hasRole($role)
     {
         return $this->role === $role;
+    }
+
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
     }
 }
