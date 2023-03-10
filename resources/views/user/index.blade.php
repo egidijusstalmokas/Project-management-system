@@ -4,13 +4,13 @@
     <div class="card-header">
         <h3 class="card-title">Users list</h3>
         <div class="card-tools">
-        @include('messages.success')
             <a href="{{ route('users.create') }}"><button type="button" class="btn btn-outline-info"><i class="fa-solid fa-plus mr-2"></i>Add new</button></a>
         </div>
         <!-- /.card-tools -->
     </div>
     <!-- /.card-header -->
     <div class="card-body">
+    @include('messages.success')
         <table class="table">
         <thead>
             <tr>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Actions\Fortify\CreateNewUser;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\WelcomeEmail;
+use App\Mail\DeleteUserMail;
 use App\Models\User;
 use Auth;
 use Illuminate\Support\Facades\Validator;
@@ -104,6 +105,7 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $user->delete();
-        return redirect()->route('users.index')->with('success', 'User was updated successfully');
+        Mail::to($user->email)->send(new DeleteUserMail($user));
+        return redirect()->route('users.index')->with('success', 'User was deleted successfully');
     }
 }
