@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,5 +29,6 @@ Route::middleware([
     })->name('dashboard');
     Route::middleware(['admin'])->group(function () {
         Route::resource('users', UserController::class, ['except' => ['show']])->names('users');
+        Route::resource('profile', ProfileController::class, ['except' => ['edit']])->names('profile');
     });
 });
