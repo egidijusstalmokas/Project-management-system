@@ -20,7 +20,7 @@ class CreateProfilesTable extends Migration
             $table->string('profession');
             $table->string('education');
             $table->string('location');
-            $table->string('skils');
+            $table->string('skills');
             $table->text('notes');
             $table->string('phone');
             $table->string('email');
