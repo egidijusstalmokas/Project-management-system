@@ -60,7 +60,7 @@
             PERSONAL
         </li>
         <li class="nav-item">
-          <a href="{{ Auth::user()->relationLoaded('profile') && Auth::user()->profile->isNotEmpty() ? route('profile.index') : route('profile.create') }}" class="nav-link {{ request()->routeIs('profile.index', 'profile.create', 'profile.edit') ? 'active' : '' }}">
+          <a href="{{ !empty(Auth::user()->profile) ? route('profile.index') : route('profile.create') }}" class="nav-link {{ request()->routeIs('profile.index', 'profile.create', 'profile.edit') ? 'active' : '' }}">
           <i class="nav-icon fa-solid fa-id-card"></i>
             <p>
               Profile

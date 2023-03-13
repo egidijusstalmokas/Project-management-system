@@ -29,6 +29,6 @@ Route::middleware([
     })->name('dashboard');
     Route::middleware(['admin'])->group(function () {
         Route::resource('users', UserController::class, ['except' => ['show']])->names('users');
-        Route::resource('profile', ProfileController::class, ['except' => ['edit']])->names('profile');
     });
+    Route::resource('profile', ProfileController::class, ['except' => ['edit']])->names('profile');
 });
