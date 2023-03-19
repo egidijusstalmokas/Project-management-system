@@ -78,10 +78,21 @@
             </p>
           </a>
         </li>
+        <li class="nav-item">
+          <a href="{{ route('company.index') }}" class="nav-link {{ request()->routeIs('company.index') ? 'active' : '' }}">
+          <i class="nav-icon fa-solid fa-info"></i>
+            <p>
+              Company
+            </p>
+          </a>
+        </li>
       </ul>
     </nav>
     <!-- /.sidebar-menu -->
   </div>
   <!-- /.sidebar -->
 </aside>
+
+
+
 

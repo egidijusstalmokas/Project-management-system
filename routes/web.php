@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CompanyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,7 @@ Route::middleware([
     })->name('dashboard');
     Route::middleware(['admin'])->group(function () {
         Route::resource('users', UserController::class, ['except' => ['show']])->names('users');
+        Route::resource('companies', CompanyController::class, ['except' => ['create', 'edit', 'show', 'destroy']])->names('company');
     });
     Route::resource('profile', ProfileController::class, ['except' => ['edit']])->names('profile');
 });
